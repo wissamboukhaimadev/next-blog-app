@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { GetStaticProps, NextPage } from 'next'
 import PostsList from '../components/PostsList'
 import { PostType } from '../utils/postType'
-import { Avatar, Container, Grid, Text, Title } from '@mantine/core'
+import { Container, Grid } from '@mantine/core'
 
 
 
@@ -21,21 +21,12 @@ const Blog: NextPage<StarWarsPersonProps> = ({ posts }) => {
             <Head>
                 <title>Wissam Blog</title>
             </Head>
-
-
             <Container>
-
-
-
                 <Grid gutter='xl'>
-
-
                     {posts.map((post, index) => (
                         <PostsList key={index} post={post} />
                     ))}
                 </Grid>
-
-
             </Container>
         </div>
     )

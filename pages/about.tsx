@@ -1,7 +1,7 @@
 import { Container, List, Text, Title, useMantineColorScheme } from "@mantine/core"
 import Head from "next/head"
 
-const about = () => {
+const About = () => {
 
     const { colorScheme } = useMantineColorScheme()
 
@@ -69,4 +69,4 @@ const about = () => {
     )
 }
 
-export default about
+export default About

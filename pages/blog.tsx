@@ -14,7 +14,7 @@ interface StarWarsPersonProps {
     posts: PostType[];
 }
 
-const blog: NextPage<StarWarsPersonProps> = ({ posts }) => {
+const Blog: NextPage<StarWarsPersonProps> = ({ posts }) => {
 
     return (
         <div>
@@ -41,7 +41,7 @@ const blog: NextPage<StarWarsPersonProps> = ({ posts }) => {
     )
 }
 
-export default blog
+export default Blog
 
 
 

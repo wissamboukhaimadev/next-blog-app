@@ -2,9 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
-import Link from 'next/link'
-import { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { Button, Center, Container, useMantineColorScheme } from '@mantine/core'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { Button, Container, useMantineColorScheme } from '@mantine/core'
 import { NextLink } from '@mantine/next'
 import Head from 'next/head'
 
@@ -53,9 +52,22 @@ export default BlogPost
 
 
 
+export const getStaticPaths: GetStaticPaths = async () => {
+    const files = fs.readdirSync(path.join('posts'))
 
+    const paths = files.map((filename) => ({
+        params: {
+            slug: filename.replace('.md', ''),
+        },
+    }))
 
-export const getServerSideProps: GetServerSideProps = async ({ params: { slug } }: any) => {
+    return {
+        paths,
+        fallback: false,
+    }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params: { slug } }: any) => {
     const markdownWithMeta = fs.readFileSync(
         path.join('posts', slug + '.md'),
         'utf-8'

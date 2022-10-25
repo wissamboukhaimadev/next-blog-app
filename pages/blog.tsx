@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
-import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import PostsList from '../components/PostsList'
 import { PostType } from '../utils/postType'
 import { Container, Grid } from '@mantine/core'
@@ -36,7 +36,7 @@ export default Blog
 
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
     // Get files from the posts dir
     const files = fs.readdirSync(path.join('posts'))
 

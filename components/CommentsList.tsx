@@ -5,6 +5,14 @@ import { useEffect, useState } from 'react'
 import { axiosBaseUrl } from "../axios/axios"
 import { CommentsAxios, IComment } from "../utils/axiosTypes"
 
+interface ErrorRequest{
+    response:{
+        data:{
+            message:string
+        }
+    }
+}
+
 const CommentsList = () => {
 
     const router = useRouter()
@@ -13,7 +21,7 @@ const CommentsList = () => {
 
     const { colorScheme } = useMantineColorScheme()
 
-    const [comments, setComments] = useState<IComment[]>()
+    const [comments, setComments] = useState<any>()
     const [fetching, setFetching] = useState<boolean>(true)
     const [requestError, setRequestError] = useState<string>('')
     // const userEmail = localStorage.getItem('next_app_user_email')
@@ -27,12 +35,9 @@ const CommentsList = () => {
 
             setComments(response.data)
             return response.data
-        } catch (error) {
-
-            if (!error.response.data.message === 'No One Comment To This Post') {
-
-                setRequestError('Unexpected Error Try Again')
-            }
+        } catch (error:any) {
+                setRequestError(error.response.data.message)
+            
         }
     }
 
@@ -45,11 +50,11 @@ const CommentsList = () => {
 
     return (
         <Container className="mb-10">
-            {comments && comments.map(comment => (
+            {comments && comments.map((comment:any) => (
 
                 <section className="my-10" key={comment.id}>
                     <div className="flex">
-                        <Avatar src={null} alt="Vitaly Rtishchev" color="red" radius='lg'> {comment.author.email[0]} </Avatar>
+                        <Avatar src={null} alt="Vitaly Rtishchev" color="red" radius='lg'> {comment.author.email[0] as string} </Avatar>
 
                         <Text className="pt-1 px-5"> {comment.author.email} </Text>
                     </div>

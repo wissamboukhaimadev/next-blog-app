@@ -3,9 +3,11 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { Button, Container, useMantineColorScheme } from '@mantine/core'
+import { Button, Container, Text, useMantineColorScheme } from '@mantine/core'
 import { NextLink } from '@mantine/next'
 import Head from 'next/head'
+import Comments from '../../components/Comments'
+import CommentsList from '../../components/CommentsList'
 
 interface IBlogProps {
     frontmatter: any
@@ -27,7 +29,7 @@ const BlogPost: NextPage<IBlogProps> = ({
     return (
         <>
             <Head>
-                <title> {title} </title>
+                <title> wissam </title>
             </Head>
             <Container className={dark_light_class}>
                 <Button color='cyan' size='md' component={NextLink} href='/blog'>
@@ -44,6 +46,8 @@ const BlogPost: NextPage<IBlogProps> = ({
                     </div>
                 </div>
             </Container>
+            <Comments />
+            <CommentsList />
         </>
     )
 }
